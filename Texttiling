@@ -181,6 +181,7 @@ class TextTilingTokenizer(TokenizerI):
     def _mark_paragraph_breaks(self, text):
         """Identifies indented text or line breaks as the beginning of
         paragraphs"""
+        // 将缩进的文本或换行符标识为段落的开头
 
         MIN_PARAGRAPH = 100
         pattern = re.compile("[ \t\r\f\v]*\n[ \t\r\f\v]*\n[ \t\r\f\v]*")
