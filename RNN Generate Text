@@ -16,7 +16,7 @@ with open(poetry_file, "r", encoding='utf-8',) as f:
             if '_' in content or '(' in content or '（' in content or '《' in content or '[' in content:  
                 continue  
             if len(content) < 5 or len(content) > 79:  
-                continue  
+                continue  # 留下长度在5到79的诗
             content = '[' + content + ']'  
             poetrys.append(content)  
         except Exception as e:   
@@ -31,8 +31,8 @@ all_words = []
 for poetry in poetrys:  
     all_words += [word for word in poetry]  
 counter = collections.Counter(all_words)  
-count_pairs = sorted(counter.items(), key=lambda x: -x[1])  
-words, _ = zip(*count_pairs)  
+count_pairs = sorted(counter.items(), key=lambda x: -x[1])   #从大到小排序统计字频率键值对
+words, _ = zip(*count_pairs)  # 分别得到name和number的两个序列
    
 # 取前多少个常用字  
 words = words[:len(words)] + (' ',)  
