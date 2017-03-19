@@ -11,12 +11,12 @@ poetrys = []
 with open(poetry_file, "r", encoding='utf-8',) as f:  
     for line in f:  
         try:  
-            title, content = line.strip().split(':')  
+            title, content = line.strip().split(':')  # 分开标题和内容
             content = content.replace(' ','')  
             if '_' in content or '(' in content or '（' in content or '《' in content or '[' in content:  
                 continue  
             if len(content) < 5 or len(content) > 79:  
-                continue  
+                continue  # 保留 诗句长度在 5-79之间的没有其他符号的文章
             content = '[' + content + ']'  
             poetrys.append(content)  
         except Exception as e:   
@@ -31,8 +31,8 @@ all_words = []
 for poetry in poetrys:  
     all_words += [word for word in poetry]  
 counter = collections.Counter(all_words)  
-count_pairs = sorted(counter.items(), key=lambda x: -x[1])  
-words, _ = zip(*count_pairs)  
+count_pairs = sorted(counter.items(), key=lambda x: -x[1])  # 从大到小排序
+words, _ = zip(*count_pairs)  # 返回tuple键值对 返回键值序列和数量序列
    
 # 取前多少个常用字  
 words = words[:len(words)] + (' ',)  
